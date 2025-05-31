@@ -66,3 +66,86 @@ func main() {
 }
 ```
 
+# API Overview
+
+## Creating Queries
+- `From(slice []T) Query[T]`
+Initializes a query from a slice.
+
+# Query Functions
+
+## Filtering
+- **Where(predicate func(T) bool) Query[T]**  
+  Filters items matching the predicate.
+
+- **WhereGroup(group PredicateGroup[T]) Query[T]**  
+  Filters with multiple predicates combined by AND or OR.
+
+## Projection
+- **Select(source Query[T], selector func(T) U) Query[U]**  
+  Projects each element into a new form.
+
+## Ordering
+- **OrderBy(less func(T, T) bool) Query[T]**  
+  Sorts elements in ascending order.
+
+- **OrderByDescending(less func(T, T) bool) Query[T]**  
+  Sorts elements in descending order.
+
+## Set Operations
+- **Distinct(equal func(T, T) bool) Query[T]**  
+  Removes duplicates.
+
+- **Union(other []T, equal func(T, T) bool) Query[T]**  
+  Combines two sequences without duplicates.
+
+- **Intersect(other []T, equal func(T, T) bool) Query[T]**  
+  Returns elements present in both sequences.
+
+- **Except(other []T, equal func(T, T) bool) Query[T]**  
+  Returns elements in the first sequence but not in the second.
+
+## Aggregation
+- **Sum(selector func(T) int) int**  
+  Computes the sum.
+
+- **Min(selector func(T) int) int**  
+  Finds the minimum value.
+
+- **Max(selector func(T) int) int**  
+  Finds the maximum value.
+
+- **Aggregate(seed U, func(U, T) U) U**  
+  Accumulates values.
+
+## Element Access
+- **First(predicate func(T) bool) (T, bool)**  
+  Returns the first element matching the predicate.
+
+- **ElementAt(index int) (T, bool)**  
+  Returns the element at the specified index.
+
+- **DefaultIfEmpty(defaultValue T) Query[T]**  
+  Returns a default value if the sequence is empty.
+
+## Pagination and Others
+- **Skip(count int) Query[T]**  
+  Skips the first N elements.
+
+- **Take(count int) Query[T]**  
+  Takes the first N elements.
+
+- **Reverse() Query[T]**  
+  Reverses the sequence.
+
+## Grouping & Conversion
+- **GroupBy(source Query[T], keySelector func(T) K) map[K][]T**  
+  Groups elements by key.
+
+- **ToSlice() []T**  
+  Converts the query to a slice.
+
+- **ToMap(source Query[T], keySelector func(T) K, valueSelector func(T) V) map[K]V**  
+  Converts the query to a map.
+
+
