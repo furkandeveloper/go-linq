@@ -29,3 +29,40 @@
 
 ```bash
 go get github.com/furkandeveloper/go-linq
+```
+
+## Usage
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/yourusername/linq"
+)
+
+func main() {
+	data := []int{5, 3, 8, 6, 2}
+
+	// Create a query from slice
+	query := linq.From(data)
+
+	// Filter even numbers greater than 3
+	evenGreaterThanThree := query.
+		Where(func(n int) bool { return n%2 == 0 && n > 3 }).
+		ToSlice()
+
+	fmt.Println(evenGreaterThanThree) // Output: [8 6]
+
+	// Sum of all numbers
+	total := query.Sum(func(n int) int { return n })
+	fmt.Println(total) // Output: 24
+
+	// Order descending and take top 3
+	top3 := query.OrderByDescending(func(a, b int) bool { return a < b }).
+		Take(3).
+		ToSlice()
+
+	fmt.Println(top3) // Output: [8 6 5]
+}
+```
+
