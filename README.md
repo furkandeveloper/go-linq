@@ -37,7 +37,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/yourusername/linq"
+	"github.com/furkandeveloper/go-linq/linq"
 )
 
 func main() {
