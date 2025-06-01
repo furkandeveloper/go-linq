@@ -1,4 +1,4 @@
-# linq
+# go-linq
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/furkandeveloper/go-linq.svg)](https://pkg.go.dev/github.com/furkandeveloper/go-linq)
 [![Go Report Card](https://goreportcard.com/badge/github.com/furkandeveloper/go-linq)](https://goreportcard.com/report/github.com/furkandeveloper/go-linq)
